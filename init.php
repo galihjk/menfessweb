@@ -1,4 +1,5 @@
 <?php 
+session_start();
 date_default_timezone_set('Asia/Jakarta');
 function f($f, $errlog = true){
     $filename = "functions/".str_replace(".","/",$f).".php";
