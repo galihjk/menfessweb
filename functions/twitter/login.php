@@ -1,7 +1,7 @@
 <?php
 function twitter__login(){
     $callback = f("get_config")("LOGIN_URL");
-
+    echo "<pre>callback=";print_r($callback);echo"</pre>";
 
 
     if (isset($_SESSION['oauth_token'])) {
@@ -16,6 +16,8 @@ function twitter__login(){
         ];
 
         $access_token = $connection->oauth('oauth/access_token', $params);
+
+        echo "<pre>access_token=";print_r($access_token);echo"</pre>";
 
         $connection = f("twitter.connect")($access_token['oauth_token'], $access_token['oauth_token_secret']);
 
