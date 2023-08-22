@@ -1,44 +1,45 @@
 <?php
 function twitter__login(){
-    
+    $consumer_key = f("get_config")("CONSUMER_KEY");
+    $consumer_secret = f("get_config")("CONSUMER_SECRET");
+    $callback = f("get_config")("LOGIN_URL");
 
-    if(empty($_SESSION['user'])){
-        $connection = f("twitter.connect")();
+
+
+    if (isset($_SESSION['oauth_token'])) {
+        $oauth_token = $_SESSION['oauth_token'];
+        unset($_SESSION['oauth_token']);
+
+        $connection = new Abraham\TwitterOAuth\TwitterOAuth($consumer_key, $consumer_secret);
         
-        $request_token = $connection->getRequestToken(f("get_config")("LOGIN_URL")); 
-        $_SESSION['token'] = $request_token['oauth_token']; 
-        $_SESSION['token_secret'] = $request_token['oauth_token_secret']; 
+        $params = [
+            "oauth_verifier" => $_GET['oauth_verifier'],
+            'oauth_token' => $_GET['oauth_token']
+        ];
 
-        if($connection->http_code == '200'){ 
-            $authUrl = $connection->getAuthorizeURL($request_token['oauth_token']); 
-            $output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'">LOGIN</a>'; 
-        }else{ 
-            $output = '<h3 style="color:red">Error connecting to Twitter! Try again later!</h3>'; 
-        }
+        $access_token = $connection->oauth('oauth/access_token', $params);
 
-        echo $output;
-    }
-    else{
-        $connection = f("twitter.connect")($_SESSION['token'],$_SESSION['token_secret']);
-        $access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']); 
-        $_SESSION['access_token'] = $access_token;
-        $_SESSION['user'] = $connection->get('account/verify_credentials');
-    }
-    /*
+        $connection = new Abraham\TwitterOAuth\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
 
-    if(isset($_REQUEST['oauth_token']) && $_SESSION['token'] !== $_REQUEST['oauth_token']){ 
-        //Remove token from session 
-        unset($_SESSION['token']); 
-        unset($_SESSION['token_secret']); 
+        $content = $connection->get('account/verify_credentials');
+        
+        print_r($content);
+
+    } else {
+        
+        $connection = new Abraham\TwitterOAuth\TwitterOAuth($consumer_key, $consumer_secret);
+
+        $temporary_credentials = $connection->oauth('oauth/request_token', ["oauth_callback" => $callback]);
+
+        $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
+        $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
+
+        $url = $connection->url('oauth/authenticate', array('oauth_token' => $temporary_credentials['oauth_token']));
+
+        echo "<a href='$url'>$url</a>";
+        // REDIRECTING TO THE URL
+        // header('Location: ' . $url);
     }
-    $connection = f("twitter.connect")();
-    $access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']); 
-    if($connection->http_code == '200'){ 
-        // Storing access token data into sessio
-        $_SESSION['access_token'] = $access_token;
-        $_SESSION['user'] = $connection->get('account/verify_credentials');
-    }
-    */
 
     echo "<pre>";
     print_r($_SESSION);
