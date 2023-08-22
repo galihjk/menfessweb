@@ -1,7 +1,7 @@
 <?php
 function twitter__login(){
     $callback = f("get_config")("LOGIN_URL");
-    echo "<pre>callback=";print_r($callback);echo"</pre>";
+    // echo "<pre>callback=";print_r($callback);echo"</pre>";
 
 
     if (isset($_SESSION['oauth_token'])) {
@@ -17,17 +17,11 @@ function twitter__login(){
 
         $access_token = $connection->oauth('oauth/access_token', $params);
 
-        echo "<pre>access_token=";print_r($access_token);echo"</pre>";
+        // echo "<pre>access_token=";print_r($access_token);echo"</pre>";
 
-        $connection = f("twitter.connect")($access_token['oauth_token'], $access_token['oauth_token_secret']);
+        $_SESSION['access_token'] = $access_token;
 
-        $content = $connection->get('account/verify_credentials');
-        
-        print_r($content);
-
-        $_SESSION['user'] = $content;
-
-        echo "asd";
+        // echo "asd";
 
     } else {
         
@@ -38,14 +32,20 @@ function twitter__login(){
         $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
         $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
 
-        $url = $connection->url('oauth/authenticate', array('oauth_token' => $temporary_credentials['oauth_token']));
+        $param = [
+            'oauth_token' => $temporary_credentials['oauth_token'],
+        ];
+        if(!empty($_GET['newlogin'])){
+            $param["force_login"] = "true";
+        }
 
-        echo "<a href='$url'>$url</a>";
+        $url = $connection->url('oauth/authenticate', $param);
+
+        // echo "<a href='$url'>$url</a>";
         // REDIRECTING TO THE URL
-        // header('Location: ' . $url);
+        header('Location: ' . $url);
+        exit();
     }
 
-    echo "<pre>";
-    print_r($_SESSION);
-    echo "</pre>";
+    header('Location: index.php');
 }
