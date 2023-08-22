@@ -23,6 +23,10 @@ function twitter__login(){
         
         print_r($content);
 
+        $_SESSION['user'] = $content;
+
+        echo "asd";
+
     } else {
         
         $connection = f("twitter.connect")();
