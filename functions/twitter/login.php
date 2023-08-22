@@ -1,7 +1,5 @@
 <?php
 function twitter__login(){
-    $consumer_key = f("get_config")("CONSUMER_KEY");
-    $consumer_secret = f("get_config")("CONSUMER_SECRET");
     $callback = f("get_config")("LOGIN_URL");
 
 
@@ -10,7 +8,7 @@ function twitter__login(){
         $oauth_token = $_SESSION['oauth_token'];
         unset($_SESSION['oauth_token']);
 
-        $connection = new Abraham\TwitterOAuth\TwitterOAuth($consumer_key, $consumer_secret);
+        $connection = f("twitter.connect")();
         
         $params = [
             "oauth_verifier" => $_GET['oauth_verifier'],
@@ -19,7 +17,7 @@ function twitter__login(){
 
         $access_token = $connection->oauth('oauth/access_token', $params);
 
-        $connection = new Abraham\TwitterOAuth\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+        $connection = f("twitter.connect")($access_token['oauth_token'], $access_token['oauth_token_secret']);
 
         $content = $connection->get('account/verify_credentials');
         
@@ -27,7 +25,7 @@ function twitter__login(){
 
     } else {
         
-        $connection = new Abraham\TwitterOAuth\TwitterOAuth($consumer_key, $consumer_secret);
+        $connection = f("twitter.connect")();
 
         $temporary_credentials = $connection->oauth('oauth/request_token', ["oauth_callback" => $callback]);
 
