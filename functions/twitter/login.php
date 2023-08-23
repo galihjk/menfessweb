@@ -4,7 +4,7 @@ function twitter__login(){
     // echo "<pre>callback=";print_r($callback);echo"</pre>";
 
 
-    if (isset($_SESSION['oauth_token'])) {
+    if (isset($_SESSION['oauth_token']) and !empty($_GET['oauth_verifier'])) {
         $oauth_token = $_SESSION['oauth_token'];
         unset($_SESSION['oauth_token']);
 
@@ -23,7 +23,8 @@ function twitter__login(){
 
         // echo "asd";
 
-    } else {
+    }
+    else {
         
         $connection = f("twitter.connect")();
 
