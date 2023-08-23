@@ -183,7 +183,7 @@ function webview__home($data = []){
                 /*
                     <!-- Topbar Search -->
                     <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        class=" form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
@@ -379,7 +379,7 @@ function webview__home($data = []){
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Confess Me </h1>
-                        <a target="_blank" href="https://twitter.com/<?=f("get_config")("username")?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <a target="_blank" href="https://twitter.com/<?=f("get_config")("username")?>" class=" btn btn-sm btn-primary shadow-sm">
                             <i class="fas fa-external-link fa-sm text-white-50"></i> @<?=f("get_config")("username")?>
                         </a>
                     </div>
@@ -457,7 +457,7 @@ function webview__home($data = []){
                                                 Koin</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 18
-                                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                                <a href="#" class=" btn btn-sm btn-primary shadow-sm">
                                                 <i class="fas fa-sack-dollar fa-sm text-white-50"></i> Top Up
                                                 </a>
                                             </div>
@@ -480,7 +480,7 @@ function webview__home($data = []){
                                                 Akun Premium</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 Tidak 
-                                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                                <a href="#" class=" btn btn-sm btn-primary shadow-sm">
                                                     <i class="fas fa-level-up fa-sm text-white-50"></i> Upgrade
                                                 </a>
                                             </div>
@@ -527,7 +527,7 @@ function webview__home($data = []){
                                             <textarea class="form-control" name="text" placeholder="Tulis pesanmu di sini.."></textarea>
                                         </div>
                                         <div class="mt-2 text-right">
-                                            <button type="submit" class="d-none d-sm-inline-block btn btn-primary shadow-sm">
+                                            <button type="submit" class=" btn btn-primary shadow-sm">
                                                 <i class="fas fa-paper-plane fa-sm text-white-50"></i> Kirim
                                             </button>
                                         </div>
