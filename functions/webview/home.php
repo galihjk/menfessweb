@@ -386,6 +386,21 @@ function webview__home($data = []){
 
                     <!-- Content Row -->
                     <div class="row">
+                        
+                        <?php
+                        if($data['check_follow'] == true){
+                            f("webview.home.stats")($data);
+                        }
+                        else{
+                            f("webview.home.need_follow")($data);
+                        }
+                        f("webview._component.statcard")([
+                            'color'=>'danger',
+                            'title'=>'test',
+                            'icon'=>'fa-pencil',
+                            'content'=>f("webview.home.stats.msg_quota")($data),
+                        ]);
+                        ?>
 
                         <!-- Kuota Gratis Harian - Pesan -->
                         <div class="col-xl-3 col-md-6 mb-4">

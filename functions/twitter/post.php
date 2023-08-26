@@ -1,6 +1,6 @@
 <?php
 function twitter__post($endpoint, $data){
-    $connection = f("twitter.connect")(f("get_config")("ACCESS_TOKEN"),f("get_config")("ACCESS_TOKEN_SECRET"));
+    $connection = f("twitter.connect")("base");
     // print_r(['connection'=>$connection, 'endpoint'=>$endpoint, 'data'=>$data]);
     $result = $connection->post($endpoint, $data, true);
     // if ($connection->getLastHttpCode() != 200) {
