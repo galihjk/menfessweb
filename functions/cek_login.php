@@ -8,6 +8,16 @@ function cek_login(){
         header("Location: $location");
         exit();
     }
-    return true;
+    $userid = $_SESSION['access_token']['user_id'];
+    $userdata = f("user.get")($userid);
+    if(empty($userdata)){
+        $screen_name = $_SESSION['access_token']['screen_name'];
+        $q = "INSERT INTO users 
+        (id, screen_name) VALUES 
+        ('$userid', '$screen_name')";
+        f("db.q")($q);
+        $userdata = f("user.get")($userid);
+    }
+    return $userdata;
 }
     

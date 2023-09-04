@@ -1,6 +1,7 @@
 <?php
 include("init.php");
-f("cek_login")();
+$user = f("cek_login")();
+/*
 $connection = f("twitter.connect")("base");
 $param = [
     'source_screen_name' => $_SESSION['access_token']['screen_name'],
@@ -17,10 +18,12 @@ print_r($param);
 echo "following\n";
 print_r($following);
 die();
+*/
 $check_follow = true;
 f("webview.home")([
     'check_follow'=>$check_follow,
 ]);
+f("db.disconnect")();
 // echo "<pre>";
 // print_r($_SESSION);
 // echo "</pre>";

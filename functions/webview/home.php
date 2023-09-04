@@ -394,119 +394,7 @@ function webview__home($data = []){
                         else{
                             f("webview.home.need_follow")($data);
                         }
-                        f("webview._component.statcard")([
-                            'color'=>'danger',
-                            'title'=>'test',
-                            'icon'=>'fa-pencil',
-                            'content'=>f("webview.home.stats.msg_quota")($data),
-                        ]);
                         ?>
-
-                        <!-- Kuota Gratis Harian - Pesan -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Kuota Gratis Harian - Pesan
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">8/10</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comment fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Kuota Gratis Harian - Media -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Kuota Gratis Harian - Media
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">1/1</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-image fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Coins -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Koin</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                18
-                                                <a href="#" class=" btn btn-sm btn-primary shadow-sm">
-                                                <i class="fas fa-sack-dollar fa-sm text-white-50"></i> Top Up
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-coins fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- VIP -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Akun Premium</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                Tidak 
-                                                <a href="#" class=" btn btn-sm btn-primary shadow-sm">
-                                                    <i class="fas fa-level-up fa-sm text-white-50"></i> Upgrade
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-star fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
 
@@ -514,32 +402,32 @@ function webview__home($data = []){
 
                     <div class="row">
 
-                        <!-- Area Chart -->
+
+
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Post Pesan</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Post Pesan</div>
-                                            <a class="dropdown-item" href="#">
-                                                Media
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <h6 class="m-0 font-weight-bold text-primary">Buat Postingan Baru</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <form method="post" action="post.php">
-                                        <div>
+                                    <form action="post.php" method="post" enctype="multipart/form-data">
+                                        <div class="mb-3">
                                             <textarea class="form-control" name="text" placeholder="Tulis pesanmu di sini.."></textarea>
+                                        </div>
+                                        <div>
+                                            <div class="form-group row">
+                                                <label for="fileToUpload" class="col-sm-2 col-form-label">Media</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="file" name="fileToUpload" id="fileToUpload" accept="image/*" placeholder="upload gambar">
+                                                    <small>
+                                                        (Jika menambahkan media, biaya media akan diterapkan 
+                                                        <button type="button" onclick="document.getElementById('fileToUpload').value=''" style='font-size: smaller;'>kosongkan gambar</button>)
+                                                    </small>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="mt-2 text-right">
                                             <button type="submit" class=" btn btn-primary shadow-sm">
