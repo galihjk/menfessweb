@@ -10,3 +10,8 @@ function f($f, $errlog = true){
     if ($errlog) file_put_contents("log/f_not_exist_".date("Y-m-d-H-i").".txt", $f);
     return false;
 }
+function dd($data) {
+    echo '<pre>';
+    die(var_dump($data));
+    echo '</pre>';
+}

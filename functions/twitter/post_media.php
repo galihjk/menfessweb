@@ -26,9 +26,9 @@ function twitter__post_media($text, $file){
     //     'media_ids' => implode(',', [$media1->media_id_string])
     // ];
     // $result = $connection->post('statuses/update', $parameters);
-    echo "\n===xxx=====";
-    print_r([$param ,$result]);
-    die();
+    // echo "\n===xxx=====";
+    // print_r([$param ,$result]);
+    // die();
     
     return $result;
 }

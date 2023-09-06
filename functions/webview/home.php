@@ -14,7 +14,7 @@ function webview__home($data = []){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Confess Me @<?=f("get_config")("username")?></title>
+    <title>Confess Me @<?=$data['base_username']?></title>
     <link rel="icon" type="image/x-icon" href="https://abs.twimg.com/favicons/twitter.3.ico">
 
     <!-- Custom fonts for this template-->
@@ -37,7 +37,7 @@ function webview__home($data = []){
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href=".">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -49,11 +49,23 @@ function webview__home($data = []){
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href=".">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href="https://twitter.com/<?=$data['base_username']?>">
+                    <i class="fas fa-external-link "></i>
+                    <span>@<?=$data['base_username']?></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-toggle="modal" data-target="#topUpModal">
+                    <i class="fas fa-sack-dollar"></i>
+                    <span>Top Up</span>
+                </a>
+            </li>
             <?php 
             /*
             <!-- Divider -->
@@ -166,6 +178,7 @@ function webview__home($data = []){
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
+        
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -379,9 +392,6 @@ function webview__home($data = []){
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Confess Me </h1>
-                        <a target="_blank" href="https://twitter.com/<?=f("get_config")("username")?>" class=" btn btn-sm btn-primary shadow-sm">
-                            <i class="fas fa-external-link fa-sm text-white-50"></i> @<?=f("get_config")("username")?>
-                        </a>
                     </div>
 
                     <!-- Content Row -->
@@ -401,9 +411,6 @@ function webview__home($data = []){
                     <!-- Content Row -->
 
                     <div class="row">
-
-
-
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
@@ -424,13 +431,13 @@ function webview__home($data = []){
                                                     <input class="form-control" type="file" name="fileToUpload" id="fileToUpload" accept="image/*" placeholder="upload gambar">
                                                     <small>
                                                         (Jika menambahkan media, biaya media akan diterapkan 
-                                                        <button type="button" onclick="document.getElementById('fileToUpload').value=''" style='font-size: smaller;'>kosongkan gambar</button>)
+                                                        <button type="button" onclick="document.getElementById('fileToUpload').value=''" style='font-size: smaller;'>kosongkan media</button>)
                                                     </small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mt-2 text-right">
-                                            <button type="submit" class=" btn btn-primary shadow-sm">
+                                            <button type="submit" class=" btn btn-primary shadow-sm" onClick="this.form.submit(); this.disabled=true; this.value='Mengirim...'; ">
                                                 <i class="fas fa-paper-plane fa-sm text-white-50"></i> Kirim
                                             </button>
                                         </div>
@@ -479,16 +486,28 @@ function webview__home($data = []){
                                     <h6 class="m-0 font-weight-bold text-primary">Postingan Anda</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="">
+                                    <?php
+                                    if(empty($data["my_posts"])){
+                                        ?>
+                                        Belum ada postingan.
+                                        <?php
+                                    }
+                                    else{
+                                        ?>
                                         <ul>
+                                        <?php
+                                        foreach($data["my_posts"] as $item){
+                                            ?>
                                             <li>
-                                                <a target="_blank" href="https://twitter.com/men_fes/status/1694167940093059353"><?=date("l, j F Y H:i:s")?></a>
+                                                <a target="_blank" href="https://twitter.com/<?=$data['base_username']?>/status/<?=$item['id']?>"><?=date("l, j F Y H:i:s", strtotime($item['time']))?></a>
                                             </li>
-                                            <li>
-                                                <a target="_blank" href="https://twitter.com/men_fes/status/1694167940093059353"><?=date("l, j F Y H:i:s")?></a>
-                                            </li>
+                                            <?php
+                                        }
+                                        ?>
                                         </ul>
-                                    </div>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>

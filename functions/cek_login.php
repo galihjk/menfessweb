@@ -18,6 +18,9 @@ function cek_login(){
         f("db.q")($q);
         $userdata = f("user.get")($userid);
     }
+    if($userdata["banned_at"]){
+        die("Your account ($userid) is banned. Please contact administrator.");
+    }
     return $userdata;
 }
     
