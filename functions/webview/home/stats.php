@@ -2,13 +2,13 @@
 function webview__home__stats($data){
     f("webview._component.statcard")([
         'color'=>'success',
-        'title'=>'Kuota Menfess Saat Ini',
+        'title'=>'Kuota Menfess Terpakai Saat Ini',
         'icon'=>'fa-clock',
         'content'=>f("webview.home.stats.main_quota")($data),
     ]);
     f("webview._component.statcard")([
         'color'=>'danger',
-        'title'=>'Kuota Gratis Anda',
+        'title'=>'Kuota Gratis Terpakai Anda',
         'icon'=>'fa-pencil',
         'content'=>f("webview.home.stats.msg_quota")($data),
     ]);

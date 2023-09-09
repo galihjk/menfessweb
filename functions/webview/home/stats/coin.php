@@ -1,13 +1,16 @@
 <?php
 function webview__home__stats__coin($data){
     ob_start();
-    $userid = f("user.get")()['id'];
+    $user = f("user.get")();
+    $userid = $user['id'];
     ?>
-        <div class="h3 mb-0 font-weight-bold text-gray-800">
-            18
-            <a href="#" class=" btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#topUpModal">
-            <i class="fas fa-sack-dollar fa-sm text-white-50"></i> Top Up
-            </a>
+        <div class="mb-0 font-weight-bold text-gray-800">
+            <h1>
+                <?=$user['coin']?>
+                <a href="#" class=" btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#topUpModal">
+                    <i class="fas fa-sack-dollar fa-sm text-white-50"></i> Top Up
+                </a>
+            </h1>
         </div>
         <div class="modal fade" id="topUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

@@ -37,9 +37,41 @@ function webview__home__stats__main_quota($data){
     </div>
     <div class="row no-gutters align-items-center">
         <div class="col">
-            <div class=""><?=date("H:i:s (d/m/Y)")?></div>
+            <div class="my-3"><?=date("H:i:s (d/m/Y)")?></div>
         </div>
     </div>
+    <div class="row no-gutters align-items-center">
+        <div class="col text-right">
+            <div id="base_tunggu_kuota" class='font-italic'></div>
+        </div>
+    </div>
+    <?php  ?>
+    <?php
+    if(!empty($data['base_quota_used'])){
+        f("webview._component.js.second_to_time")();
+        ?>
+        <script>
+        var base_tunggu_kuota = <?=$data['base_tunggu_kuota']?>;
+        function set_base_time(){
+            base_tunggu_kuota--;
+            if(base_tunggu_kuota <= 0){
+                $("#base_tunggu_kuota").html("<small>Please <a href='.'>refresh</a></small>");
+            }
+            else{
+                $("#base_tunggu_kuota").html(second_to_time(base_tunggu_kuota));
+                setTimeout(() => {
+                    set_base_time();
+                }, 1000);
+            }
+        }
+        setTimeout(() => {
+            set_base_time();
+        }, 1000);
+    </script>
+        <?php
+    }
+    ?>
+    
     <?php
     return ob_get_clean();
 }

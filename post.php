@@ -3,6 +3,11 @@ include("init.php");
 $user = f("cek_login")();
 $userid = $user["id"];
 // echo "<a href='index.php'>ok</a>";
+$info = "Anda akan mengirim pesan text<br>";
+$info .= "Anda akan mengirim pesan text<br>";
+$info .= "Anda akan mengirim pesan text<br>";
+$info .= "Anda akan mengirim pesan text<br>";
+f("webview.errorpost")($info);
 if(!empty($_FILES["fileToUpload"]["name"])){
     $type = "img";
     $target_dir = "temp/";

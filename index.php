@@ -21,16 +21,34 @@ die();
 */
 
 $check_follow = true;
+$allow_post = true;
 
 $userid = $user["id"];
-$limit = f("get_config")("txt_quota_max",0)+f("get_config")("media_quota_max",0);
-$q = "select * from posts where user_id='$userid' order by time desc limit $limit";
+$txt_quota_seconds = f("get_config")("txt_quota_seconds",0);
+$media_quota_seconds = f("get_config")("media_quota_seconds",0);
+$q = "select * from posts where 
+user_id='$userid' 
+and time > now() - interval $txt_quota_seconds second - interval $media_quota_seconds second    
+order by time asc";
 $my_posts = f("db.q")($q);
 
 $base_quota_max = f("get_config")("base_quota_max",1);
 $base_quota_seconds = f("get_config")("base_quota_seconds",1);
-$q = "select count(1) cnt from posts where time > now() - interval $base_quota_seconds second";
-$base_quota_used = f("db.q")($q)[0]['cnt'];
+$q = "select time from posts where time > now() - interval $base_quota_seconds second order by time asc";
+$data_base_quota = f("db.q")($q);
+
+if(empty($data_base_quota)){
+    $base_quota_used = 0;
+    $base_tunggu_kuota = 0;
+}
+else{
+    $base_quota_used = count($data_base_quota);
+    $base_tunggu_kuota = 5+($base_quota_seconds - (time()-strtotime($data_base_quota[0]['time'])));
+}
+
+if($base_quota_used >= $base_quota_max){
+    $allow_post = false;
+}
 
 f("webview.home")([
     'check_follow'=>$check_follow,
@@ -38,6 +56,8 @@ f("webview.home")([
     'base_quota_used'=>$base_quota_used,
     'base_quota_max'=>$base_quota_max,
     'base_username'=>f("get_config")("username"),
+    'allow_post'=>$allow_post,
+    'base_tunggu_kuota'=>$base_tunggu_kuota,
 ]);
 f("db.disconnect")();
 // echo "<pre>";
