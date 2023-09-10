@@ -6,16 +6,17 @@ function webview___component__js__second_to_time(){
     $GLOBALS['f_second_to_time'] = true;
     ?>
     <script>
+        function pad(num, size) {
+            num = num.toString();
+            while (num.length < size) num = "0" + num;
+            return num;
+        }
         function second_to_time(my_second){
-            var sec_num = parseInt(my_second, 10); // don't forget the second param
-            var hours   = Math.floor(sec_num / 3600);
-            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-            var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-            if (hours   < 10) {hours   = "0"+hours;}
-            if (minutes < 10) {minutes = "0"+minutes;}
-            if (seconds < 10) {seconds = "0"+seconds;}
-            return hours+':'+minutes+':'+seconds;
+            var d = Math.floor(my_second / (86400));
+            var h = Math.floor(my_second % (86400) / 3600);
+            var m = Math.floor(my_second % 3600 / 60);
+            var s = Math.floor(my_second % 60);
+            return (d > 0 ? d + "h " : "")+pad(h)+":"+pad(m,2)+":"+pad(s,2);
         }
     </script>
     <?php

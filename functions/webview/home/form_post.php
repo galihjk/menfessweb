@@ -1,11 +1,33 @@
 <?php
 function webview__home__form_post($data){
+    $barusan_posting = false;
+    if(!empty($data['my_posts'])){
+        $last_post = end($data['my_posts']); 
+        $wait_per_post = f("get_config")("wait_per_post",0);
+        $last_post_time = strtotime($last_post['time']);
+        $since_last = time() - $last_post_time;
+        if($since_last <= $wait_per_post){
+            $barusan_posting = true;
+        } 
+    }
     ?>
     <div class="row">
         <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">
                 <?php
-                if ($data['allow_post']){
+                if($barusan_posting){
+                    ?>
+                    <div
+                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-danger text-white">
+                        <h6 class="m-0 font-weight-bold text-white">Anda baru saja posting</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body bg-light-danger">
+                        Anda baru saja melakukan posting, silakan tunggu, lalu nanti refresh kembali.
+                    </div>
+                    <?php
+                }
+                elseif ($data['allow_post']){
                     ?>
                     <div
                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -62,7 +84,7 @@ function webview__home__form_post($data){
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="m-3">
-                        bla bla bla
+                        <?php f("webview.home.informasi_biaya")() ?>
                     </div>
                 </div>
             </div>

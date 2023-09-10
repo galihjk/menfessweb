@@ -14,7 +14,7 @@ function dump($data, $vardump = false) {
     echo '<pre>';
     if($vardump)var_dump($data);
     if(!$vardump)print_r($data);
-    echo '</pre>';
+    echo '</pre><br>';
 }
 function dd($data, $vardump = false) {
     dump($data, $vardump);

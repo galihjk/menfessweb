@@ -421,7 +421,7 @@ function webview__home($data = []){
                                 </div>
                                 <div class="card-body">
                                     <div class="m-3">
-                                        bla bla bla
+                                        <?php f("webview.home.ketentuan")() ?>
                                     </div>
                                 </div>
                             </div>

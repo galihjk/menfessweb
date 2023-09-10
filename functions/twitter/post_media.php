@@ -7,10 +7,10 @@ function twitter__post_media($text, $file){
     $connection->setApiVersion('1.1');
     // die("asd");
     $media1 = $connection->upload('media/upload', ['media' => $file]);
-    echo "<pre>";
-    print_r($media1);
-    echo "\n========";
-    print_r([$media1->media_id_string]);
+    // echo "<pre>";
+    // print_r($media1);
+    // echo "\n========";
+    // print_r([$media1->media_id_string]);
     // die();
     // $media2 = $connection->upload('media/upload', ['media' => '/path/to/file/kitten2.jpg']);
     $connection->setApiVersion('2');
